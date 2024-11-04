@@ -13,25 +13,29 @@ from ..items import BookDetailItem, BookItem
 
 load_dotenv()
 URL = os.getenv("URL")
-DAY = os.getenv("DAY")
 
 class BooksSpider(CrawlSpider):
 
     configure_logging(install_root_handler=False)
     logging.basicConfig(
-        filename=f'../log_extraction_{DAY}.txt',
-        format='%(levelname)s: %(message)s',
-        level=logging.INFO
+    filename='../log_extraction.txt',
+    format='%(levelname)s: %(message)s',
+    level=logging.INFO
     )
-
     name = "books"
     allowed_domains = ["isbnchile.cl"]
-    start_urls = [f"{URL}={DAY}"]
+    
+    def __init__(self, day=None, **kwargs):
+        super().__init__(**kwargs)
+        
+        # Set the day from command-line arguments
+        self.DAY = day 
+        self.start_urls = [f"{URL}={self.DAY}"]
+
     rules = (
         Rule(LinkExtractor(allow=(r"pagina=\d+")), callback="parse_book",follow=True),
     )
-
-
+        
     def clean_str(self, data:str)->str:
         if data:
             return data.strip()

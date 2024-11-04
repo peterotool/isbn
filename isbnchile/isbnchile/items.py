@@ -2,13 +2,12 @@ import scrapy
 
 
 class BookItem(scrapy.Item):
-
-    isbn = scrapy.Field() 
+    isbn = scrapy.Field()
     titulo = scrapy.Field()
     fecha = scrapy.Field()
 
-class BookDetailItem(scrapy.Item):
 
+class BookDetailItem(scrapy.Item):
     isbn = scrapy.Field()
     autor = scrapy.Field()
     autores = scrapy.Field()
