@@ -43,8 +43,6 @@ scrapy shell ; fetch(<URL>)
 ## Docker Container commands
 
 ```sh
-docker build -t isbn_image .
-
 docker run --rm \
     --name isbn_container \
     -v ~/Desktop/salida:/app/output \
