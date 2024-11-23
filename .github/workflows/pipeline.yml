@@ -11,7 +11,7 @@ permissions:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: 
 
 jobs:
   build-and-push-image:
@@ -34,5 +34,5 @@ jobs:
           push: true
           tags: |
             ${{ env.REGISTRY }}/${{ github.repository }}:latest
-            ${{ env.REGISTRY }}/${{ github.repository }}:${{ github.sha }} | tr '[:upper:]' '[:lower:]'
+            ${{ env.REGISTRY }}/${{ github.repository }}:${{ github.sha }}
 
